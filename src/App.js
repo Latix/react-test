@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import {AppContext} from './Context';
+import { Provider } from "react-redux";
+import store from "./store";
+// import './App.css';
+import Memo from './Memo';
 
 function App() {
+  const userState = useState({
+    name: "Kamsi Kodi",
+    age: 23
+  });
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <AppContext.Provider value={userState}>
+        <div className="App">
+          <h1>Hello World</h1>
+          <Memo />
+        </div>
+      </AppContext.Provider>
+    </Provider>
   );
 }
 
